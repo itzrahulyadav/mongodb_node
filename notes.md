@@ -101,7 +101,18 @@ Fruit.deleteOne({ _id: "62170b529bb4499af74412dc"},(err)=>{
 
 ```
 
+establishing relationship in database
 
+const person = new Person({
+    name:"Nancy",
+    age:22,
+    favouriteFruit:pineApple-->this is a another collection |
+                                                             
+})
+//this is linked as Nancy's favourite fruit
 
-
-```
+const pineApple = new Fruit({
+    name:"Pineapple",
+    rating:8,
+    review:"kinda awesome"
+})
