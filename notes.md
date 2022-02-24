@@ -63,6 +63,45 @@ Fruit.find((err,fruits)=>{
 
     //close the database collection
     mongoose.connection.close();
-    
+
     else console.log(fruits);
 })
+
+//validating data using mongoose
+we can specify the required field to make it mandatory to enter a field name in the collections
+
+```
+const fruitSchema = new mongoose.Schema({
+    name:{
+        type:String,
+        required:[true,"missing name field"]
+    },
+    rating:{
+        type:Number,
+        min:1,
+        max:10
+    },
+    review:String
+})
+
+//update data using mongoose
+```
+Fruit.updateOne({ _id: "621716fb0144187b90778513"},{name:"peach"},(err)=>{
+    if(err)console.log(err)
+    else console.log("updated successfully")
+})
+
+```
+//delete data using mongoose
+```
+Fruit.deleteOne({ _id: "62170b529bb4499af74412dc"},(err)=>{
+    if(err)console.log(err);
+    else console.log("deleted successfully")
+})
+
+```
+
+
+
+
+```

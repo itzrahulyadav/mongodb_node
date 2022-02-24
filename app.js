@@ -8,7 +8,10 @@ mongoose.connect('mongodb://localhost:27017/fruitsDB')
 }).catch(err=>console.log(err));
 
 const fruitSchema = new mongoose.Schema({
-    name:String,
+    name:{
+        type:String,
+        required:[true,"missing name field"]
+    },
     rating:{
         type:Number,
         min:1,
@@ -20,11 +23,11 @@ const fruitSchema = new mongoose.Schema({
 const Fruit = mongoose.model("Fruit",fruitSchema);
 
 const fruit = new Fruit({
-    rating:8,
-    review:"Immaculate taste"
+    rating:6,
+    review:"quite weird"
 })
 
-fruit.save();
+// fruit.save();
 
 //creating a new schema person
 
@@ -74,3 +77,18 @@ const banana = new Fruit({
 //validating data using mongoose
 
 //update and delete the data using mongoose
+Fruit.updateOne({ _id: "621716fb0144187b90778513"},{name:"peach"},(err)=>{
+    if(err)console.log(err)
+    else console.log("updated successfully")
+})
+
+//delete using mongoose
+Fruit.deleteOne({ _id: "62170b529bb4499af74412dc"},(err)=>{
+    if(err)console.log(err);
+    else console.log("deleted successfully")
+})
+
+Person.deleteOne({name:"Rahul"},(err)=>{
+    if(err)console.log(err)
+    else console.log("deleted successfully");
+})
